@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+	</f:facet>
+
+	<title>Núcleo de atendimento ao aluno</title>
+
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['images/favicon.ico']}" />
+
+	<h:outputStylesheet library="css" name="layout.css" />
+	<h:outputStylesheet library="css" name="components.css" />
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+	<h:outputStylesheet library="css" name="custom.css" />
+
+	<h:outputScript target="body" library="js" name="bootstrap.min.js" />
+	<h:outputScript library="js" name="tether.min.js" />
+	<h:outputScript target="body" library="js"
+		name="ie10-viewport-bug-workaround.js" />
+</h:head>
+
+<h:body>
+	<div class="layout-page">
+		<p:ajaxStatus styleClass="ajax-status">
+			<f:facet name="start">
+				<h:graphicImage library="images" name="loading.gif" />
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value="" />
+			</f:facet>
+		</p:ajaxStatus>
+
+		<header>
+			<nav
+				class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+				<h:link outcome="/index">
+					<h:graphicImage library="images" name="logo.png"
+						styleClass="logo img-hover" />
+				</h:link>
+
+				<button class="navbar-toggler navbar-toggler-right" type="button"
+					data-toggle="collapse" data-target="#navbarsExampleDefault"
+					aria-controls="navbarsExampleDefault" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item"><a class="nav-link" href="./index.xhtml">Início</a>
+						</li>
+
+						<li class="nav-item"><a class="nav-link"
+							href="./novaSenha.xhtml">Recuperar Senha</a></li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<section class="aw-content  js-content">
+			<ui:insert name="content" />
+		</section>
+
+		<footer class="layout-rodape">
+			<ui:include src="rodape.xhtml" />
+		</footer>
+	</div>
+</h:body>
+
+<h:form>
+	<p:confirmDialog global="true">
+		<p:commandButton value="Sim" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		<p:commandButton value="Não" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
+</h:form>
+
+</html>

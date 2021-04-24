@@ -1,0 +1,27 @@
+<ui:composition template="/WEB-INF/template/layoutErro.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form id="frm" prependId="false">
+			<p:outputLabel value="Erro ao processar sua requisição" styleClass="titulo-pagina" />
+			
+			<div class="ui-fluid">
+				<p:panel header="Banco de Talentos" style="margin-top:15px">
+					<h:panelGrid columns="1">
+						<br />
+						<p:outputLabel value="Desculpe, ocorreu um erro ao processar sua requisição!" style="color: #CC0000;font-size:16px;"  />
+						<p:outputLabel value="Favor entrar em contato com o administrador do sistema!" style="color: #CC0000;font-size:16px;"  />
+						
+						<br />
+						<a href='javascript:history.back(1)' class="link">Voltar</a>
+					</h:panelGrid>
+				</p:panel>
+			</div>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

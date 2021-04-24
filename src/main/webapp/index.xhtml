@@ -1,0 +1,63 @@
+<ui:composition template="/WEB-INF/template/layoutExterno.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<f:metadata>
+			<f:viewParam name="dummy" />
+			<f:event listener="#{loginBean.preRender}" type="preRenderView" />
+		</f:metadata>
+
+		<h:form id="frm" prependId="false">
+			<div class="ui-fluid">
+
+				<p:panelGrid columns="3" layout="grid"
+					styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-4, ui-grid-col-4, ui-grid-col-4">
+					<p:spacer />
+					<p:panel header="Acesso ao Sistema"
+						style="margin-top:10px;height:100%">
+						<p:messages autoUpdate="true" closable="true" />
+						<p:panelGrid columns="2" layout="grid"
+							style="margin-top:15px; margin-bottom:5px"
+							styleClass="panelgrid-noborder"
+							columnClasses="ui-grid-col-2, ui-grid-col-11">
+
+							<p:outputLabel value="Email:" />
+							<p:inputText id="j_username" value="#{loginBean.email}">
+								<p:focus />
+							</p:inputText>
+
+							<p:outputLabel value="Senha:" />
+							<p:password id="j_password" />
+
+							<p:spacer />
+							<p:commandButton value="Acessar" id="acessar"
+								action="#{loginBean.logar}" ajax="false"
+								styleClass="botao-pequeno botao-alto" />
+
+							<p:link outcome="/novaSenha">
+								<i class="fa fa-lock" style="font-size: 54px;"
+									title="Recuperar senha"></i>
+							</p:link>
+
+							<p:panelGrid columns="1" layout="grid"
+								styleClass="panelgrid-noborder" style="margin-top:5px"
+								columnClasses="ui-grid-col-12">
+
+								<p:outputLabel value="Esqueceu sua senha?"
+									styleClass="texto-medio" />
+
+								<p:link outcome="/novaSenha" value="Recupere sua senha!"
+									title="Recuperar Senha" style="font-weight: bold" />
+							</p:panelGrid>
+						</p:panelGrid>
+					</p:panel>
+				</p:panelGrid>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

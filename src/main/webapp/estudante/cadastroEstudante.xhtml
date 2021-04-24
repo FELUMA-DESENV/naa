@@ -1,0 +1,143 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/layoutInterno.xhtml">
+
+	<ui:define name="content">
+		<f:metadata>
+			<o:viewParam name="estudante" value="#{cadastroEstudanteBean.estudante}" />
+		</f:metadata>
+		<h:form id="frm">
+			<p:outputLabel
+				value="#{cadastroEstudanteBean.editando ? 'Editar estudante' : 'Novo estudante'}"
+				styleClass="titulo-pagina" />
+			<p:toolbar style="margin-top:15px">
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroEstudanteBean.salvar()}"
+						update="@form" />
+					<p:separator />
+					<p:button value="Limpar" outcome="/estudante/cadastroEstudante" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Voltar" outcome="/estudante/pesquisaEstudante" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:messages autoUpdate="true" closable="true" />
+			<div class="ui-fluid">
+				<p:panel header="Dados do estudante" style="margin-top:10px;">
+					<p:panelGrid columns="4" layout="grid" style="margin-top: 2px;"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-2, ui-grid-col-4,ui-grid-col-2, ui-grid-col-4">
+						<p:outputLabel value="Nome" for="idNome" />
+						<p:inputText id="idNome"
+							value="#{cadastroEstudanteBean.estudante.nome}" disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Data cadastro" for="idDataCadastro" />
+						<p:inputText id="idDataCadastro"
+							value="#{cadastroEstudanteBean.estudante.dataCadastro}"
+							disabled="true">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:inputText>
+						<p:outputLabel value="CPF" for="idCpf" />
+						<p:inputText id="idCpf"
+							value="#{cadastroEstudanteBean.estudante.cpf}" disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Matrícula" for="idMatricula" />
+						<p:inputText id="idMatricula"
+							value="#{cadastroEstudanteBean.estudante.matricula}"
+							disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Curso" for="idCurso" />
+						<p:inputText id="idCurso"
+							value="#{cadastroEstudanteBean.estudante.curso.nome}"
+							disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Hospital para encaminhamento"
+							for="idHospitalEncaminhamento" />
+						<p:inputMask id="idHospitalEncaminhamento"
+							value="#{cadastroEstudanteBean.estudante.hospitalEncaminhamento}"
+							maxlength="200">
+						</p:inputMask>
+						<p:outputLabel value="Tipo sanguíneo" for="idTipoSanguineo" />
+						<p:selectOneMenu id="idTipoSanguineo"
+							value="#{cadastroEstudanteBean.estudante.tipoSanguineo}"
+							required="true"
+							requiredMessage="O campo tipo sanguineo deve ser informado">
+							<f:selectItem itemLabel="Selecione o tipo sanguineo" />
+							<f:selectItems
+								value="#{cadastroEstudanteBean.listaTiposSanguineos}" var="tipo"
+								itemValue="#{tipo}" itemLabel="#{tipo.descricao}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Plano de saúde" for="idPlaSaude" />
+						<p:inputText id="idPlaSaude"
+							value="#{cadastroEstudanteBean.estudante.planoSaude}"
+							maxlength="200">
+						</p:inputText>
+						<p:outputLabel value="Matrícula plano de saúde"
+							for="idMatrPlaSaude" />
+						<p:inputText id="idMatrPlaSaude"
+							value="#{cadastroEstudanteBean.estudante.numeroPlanoSaude}"
+							maxlength="50">
+						</p:inputText>
+						<p:outputLabel value="Telefone plano de saúde" for="idTelPlaSaude" />
+						<p:inputMask id="idTelPlaSaude"
+							value="#{cadastroEstudanteBean.estudante.telefonePlanoSaude}"
+							maxlength="14" mask="(99)?99999-9999" slotChar=" ">
+						</p:inputMask>
+						<p:outputLabel value="Mãe" for="idMae" />
+						<p:inputText id="idMae"
+							value="#{cadastroEstudanteBean.estudante.mae}" maxlength="200">
+							<p:focus />
+						</p:inputText>
+						<p:outputLabel value="Telefone mãe" for="idTelMae" />
+						<p:inputMask id="idTelMae"
+							value="#{cadastroEstudanteBean.estudante.telefoneMae}"
+							maxlength="14" mask="(99)?99999-9999" slotChar=" ">
+						</p:inputMask>
+						<p:outputLabel value="Pai" for="idPai" />
+						<p:inputText id="idPai"
+							value="#{cadastroEstudanteBean.estudante.pai}" maxlength="200">
+							<p:focus />
+						</p:inputText>
+						<p:outputLabel value="Telefone pai" for="idTelPai" />
+						<p:inputMask id="idTelPai"
+							value="#{cadastroEstudanteBean.estudante.telefonePai}"
+							maxlength="14" mask="(99)?99999-9999" slotChar=" ">
+						</p:inputMask>
+					</p:panelGrid>
+				</p:panel>
+				<p:panel header="Informações complementares do estudante"
+					style="margin-top:10px;">
+					<p:panelGrid columns="4" layout="grid" style="margin-top: 2px;"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3">
+						<p:button outcome="estudanteContato" title="Contatos"
+							value="Contatos" styleClass="botao-grande">
+							<f:param name="estudante"
+								value="#{cadastroEstudanteBean.estudante.codigo}" />
+						</p:button>
+						<p:button outcome="estudanteVacina" title="Cartão vacina"
+							value="Cartão vacina" styleClass="botao-grande">
+							<f:param name="estudante"
+								value="#{cadastroEstudanteBean.estudante.codigo}" />
+						</p:button>
+						<p:button outcome="estudanteInformacao" title="Outras informações"
+							value="Outras informações" styleClass="botao-grande">
+							<f:param name="estudante"
+								value="#{cadastroEstudanteBean.estudante.codigo}" />
+						</p:button>
+						<p:button outcome="estudanteProntuario" title="Prontuários"
+							value="Prontuários" styleClass="botao-grande">
+							<f:param name="estudante"
+								value="#{cadastroEstudanteBean.estudante.codigo}" />
+						</p:button>
+					</p:panelGrid>
+				</p:panel>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

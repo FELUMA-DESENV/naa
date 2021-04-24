@@ -1,0 +1,115 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/layoutInterno.xhtml">
+
+	<ui:define name="content">
+		<f:metadata>
+			<o:viewParam name="estudante"
+				value="#{estudanteVacinaFreeBean.estudante}" />
+		</f:metadata>
+		<h:form id="frm">
+			<f:event listener="#{estudanteVacinaFreeBean.inicializar}"
+				type="preRenderView" />
+			<p:outputLabel
+				value="Vacinas #{estudanteVacinaFreeBean.estudante.nome}"
+				styleClass="titulo-pagina" />
+			<p:toolbar style="margin-top:15px">
+				<p:toolbarGroup align="right">
+					<p:button value="Próximo"
+						outcome="estudanteInformacaoFree.xhtml?estudante=#{estudanteVacinaFreeBean.estudante.codigo}" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="left">
+					<p:button value="Limpar"
+						outcome="estudanteVacinaFree.xhtml?estudante=#{estudanteVacinaFreeBean.estudante.codigo}" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:messages autoUpdate="true" closable="true" />
+			<div class="ui-fluid">
+				<p:panel header="Cadastro Vacinas" id="idCadastroVacina"
+					style="margin-top:10px;">
+					<p:panelGrid columns="4" layout="grid" style="margin-top: 2px;"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-1, ui-grid-col-5, ui-grid-col-1, ui-grid-col-5">
+						<p:outputLabel value="Vacina" for="idVacina" />
+						<p:selectOneMenu id="idVacina"
+							value="#{estudanteVacinaFreeBean.estudanteVacina.vacina}"
+							required="true"
+							requiredMessage="O campo vacina deve ser informado">
+							<f:selectItem itemLabel="Selecione uma vacina" />
+							<f:selectItems value="#{estudanteVacinaFreeBean.vacinas}"
+								var="vacina" itemValue="#{vacina}" itemLabel="#{vacina.nome}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Data dose" for="idDataDose" />
+						<p:calendar id="idDataDose"
+							value="#{estudanteVacinaFreeBean.estudanteVacina.dataDose}"
+							required="true" pattern="dd/MM/yyyy" locale="pt"
+							maxdate="new Date()" mask="99/99/9999">
+						</p:calendar>
+						<p:outputLabel value="Data validade" for="idDataValidade" />
+						<p:calendar id="idDataValidade"
+							value="#{estudanteVacinaFreeBean.estudanteVacina.dataValidade}"
+							pattern="dd/MM/yyyy" locale="pt" mask="99/99/9999">
+						</p:calendar>
+						<p:outputLabel value="Observação" for="idObservacao" />
+						<p:inputTextarea id="idObservacao"
+							value="#{estudanteVacinaFreeBean.estudanteVacina.observacao}"
+							maxlength="400">
+						</p:inputTextarea>
+						<p:outputLabel value="Exame soroconversão" for="idExameSoroConv" />
+						<p:selectOneButton id="idExameSoroConv" style="width:50%"
+							value="#{estudanteVacinaFreeBean.estudanteVacina.exameSoroConvercao}">
+							<f:selectItem itemLabel="Não" itemValue="false" />
+							<f:selectItem itemLabel="Sim" itemValue="true" />
+							<p:ajax update="idResultadoSoroConv" event="change" />
+						</p:selectOneButton>
+						<p:outputLabel value="Resultado exame" for="idResultadoSoroConv" />
+						<p:inputText id="idResultadoSoroConv"
+							disabled="#{!estudanteVacinaFreeBean.estudanteVacina.exameSoroConvercao}"
+							value="#{estudanteVacinaFreeBean.estudanteVacina.resultadoSoroConvercao}"
+							maxlength="400">
+						</p:inputText>
+						<p:spacer />
+						<p:commandButton value="Adicionar" id="botaoSalvar"
+							styleClass="botao-medio"
+							action="#{estudanteVacinaFreeBean.salvar()}" update="@form" />
+					</p:panelGrid>
+				</p:panel>
+				<p:dataTable
+					value="#{estudanteVacinaFreeBean.estudante.vacinaEstudantes}"
+					var="vacinaEstudante" style="margin-top:10px;margin-bottom:30px"
+					emptyMessage="Nenhuma vacina encontrada!" rows="10"
+					paginator="true" paginatorAlwaysVisible="false"
+					paginatorPosition="bottom" id="table" reflow="true"
+					rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
+					<p:column headerText="Vacina" style="text-align: left;">
+						<h:outputText value="#{vacinaEstudante.vacina.nome}" />
+					</p:column>
+					<p:column headerText="Data Dose" style="text-align: left;">
+						<h:outputText value="#{vacinaEstudante.dataDose}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Data Validate" style="text-align: left;">
+						<h:outputText value="#{vacinaEstudante.dataValidade}">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Resultado Exame" style="text-align: left;">
+						<h:outputText value="#{vacinaEstudante.resultadoSoroConvercao}" />
+					</p:column>
+					<p:column headerText="Excluir" styleClass="column-pequeno">
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							process="@this" update="table"
+							action="#{estudanteVacinaFreeBean.excluir(vacinaEstudante)}">
+							<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+								message="Tem certeza que deseja excluir o registro?" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

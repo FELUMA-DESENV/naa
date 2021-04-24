@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/template/layoutInterno.xhtml">
+
+
+	<ui:define name="content">
+		<h:form id="frm" enctype="multipart/form-data">
+			<p:messages autoUpdate="true" closable="true" />
+			<div class="ui-fluid">
+				<p:outputLabel value="Estudantes com vacinas vencidas"
+					styleClass="titulo-pagina" />
+				<p:dataTable value="#{pesquisaUsuarioBean.estudantes}"
+					var="estudante" style="margin-top:10px;margin-bottom:30px"
+					emptyMessage="Nenhum estudante encontrado!" rows="10"
+					paginator="true" paginatorAlwaysVisible="false"
+					paginatorPosition="bottom" id="table" reflow="true"
+					rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
+					<p:column headerText="Nome" filterBy="#{estudante.nome}"
+						filterMatchMode="contains" sortBy="#{estudante.nome}"
+						style="text-align: left;">
+						<h:outputText value="#{estudante.nome}" />
+					</p:column>
+					<p:column headerText="CPF" filterBy="#{estudante.cpf}"
+						filterMatchMode="contains" sortBy="#{estudante.cpf}"
+						style="text-align: left;">
+						<h:outputText value="#{estudante.cpf}" />
+					</p:column>
+					<p:column headerText="Matricula" filterBy="#{estudante.matricula}"
+						filterMatchMode="contains" sortBy="#{estudante.matricula}"
+						style="text-align: left;" styleClass="">
+						<h:outputText value="#{estudante.matricula}" />
+					</p:column>
+					<p:column headerText="Editar"
+						style="text-align: center; width:50px">
+						<p:button outcome="/estudante/estudanteVacina" icon="fa fa-pencil"
+							title="Editar">
+							<f:param name="estudante" value="#{estudante.codigo}" />
+						</p:button>
+					</p:column>
+				</p:dataTable>
+			</div>
+
+			<div class="ui-fluid">
+				<p:outputLabel value="Estudantes com vacinas obrigatórias pendentes"
+					styleClass="titulo-pagina" />
+				<p:dataTable
+					value="#{pesquisaUsuarioBean.estudantesComVacinasObrigatoriasPendentes}"
+					var="estudante" style="margin-top:10px;margin-bottom:30px"
+					emptyMessage="Nenhum estudante encontrado!" rows="10"
+					paginator="true" paginatorAlwaysVisible="false"
+					paginatorPosition="bottom" id="tableVencidas" reflow="true"
+					rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
+
+					<p:column headerText="Nome" filterBy="#{estudante.nome}"
+						filterMatchMode="contains" sortBy="#{estudante.nome}"
+						style="text-align: left;">
+						<h:outputText value="#{estudante.nome}" />
+					</p:column>
+					<p:column headerText="CPF" filterBy="#{estudante.cpf}"
+						filterMatchMode="contains" sortBy="#{estudante.cpf}"
+						style="text-align: left;">
+						<h:outputText value="#{estudante.cpf}" />
+					</p:column>
+					<p:column headerText="Matricula" filterBy="#{estudante.matricula}"
+						filterMatchMode="contains" sortBy="#{estudante.matricula}"
+						style="text-align: left;" styleClass="">
+						<h:outputText value="#{estudante.matricula}" />
+					</p:column>
+					<p:column headerText="Editar"
+						style="text-align: center; width:50px">
+						<p:button outcome="/estudante/estudanteVacina" icon="fa fa-pencil"
+							title="Editar">
+							<f:param name="estudante" value="#{estudante.codigo}" />
+						</p:button>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

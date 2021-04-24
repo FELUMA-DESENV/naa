@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/template/layoutExterno.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="content">
+		<h:form id="frm" prependId="false">
+			<p:outputLabel value="Nova Senha" styleClass="titulo-pagina" />
+			
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			
+			<div class="ui-fluid">
+				<p:panel header="Informe seu E-mail" style="margin-top: 15px">
+    				<p:panelGrid columns="2" layout="grid" id="painel"
+						style="margin-top: 10px; margin-bottom:10px"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-1, ui-grid-col-4">
+	    				
+	    				<p:outputLabel value="E-mail" for="email"/>
+						<p:inputText id="email" value="#{restaurarSenhaBean.email}" required="true" 
+							requiredMessage="O campo E-mail deve ser informado">
+							<p:focus />
+						</p:inputText>
+						
+						<p:spacer />
+						<h:panelGroup>
+							<p:commandButton value="Enviar" id="botao" 
+								action="#{restaurarSenhaBean.restaurar}" 
+								styleClass="botao-pequeno botao-alto"
+								update="@form" />
+							<p:spacer width="2" />
+							<p:button value="Voltar" outcome="/index"
+								styleClass="botao-pequeno botao-alto" />
+						</h:panelGroup>
+	    			</p:panelGrid>
+    			</p:panel>
+			</div>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>

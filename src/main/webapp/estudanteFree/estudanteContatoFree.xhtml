@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/layoutInterno.xhtml">
+
+	<ui:define name="content">
+		<f:metadata>
+			<o:viewParam name="estudante"
+				value="#{estudanteContatoFreeBean.estudante}" />
+		</f:metadata>
+		<h:form id="frm">
+			<p:outputLabel
+				value="Contatos #{estudanteContatoFreeBean.estudante.nome}"
+				styleClass="titulo-pagina" />
+			<p:toolbar style="margin-top:15px">
+				<p:toolbarGroup align="right">
+					<p:button value="Próximo"
+						outcome="estudanteVacinaFree.xhtml?estudante=#{estudanteContatoFreeBean.estudante.codigo}" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="left">
+					<p:button value="Limpar"
+						outcome="estudanteContatoFree.xhtml?estudante=#{estudanteContatoFreeBean.estudante.codigo}" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:messages autoUpdate="true" closable="true" />
+			<div class="ui-fluid">
+				<p:panel header="Cadastro contato" id="idCadastroContato"
+					style="margin-top:10px;">
+					<p:panelGrid columns="2" layout="grid" style="margin-top: 2px;"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-1, ui-grid-col-5">
+						<p:outputLabel value="Nome" for="nome" />
+						<p:inputText id="nome"
+							value="#{estudanteContatoFreeBean.estudanteContato.nome}"
+							maxlength="200" required="true">
+							<p:focus />
+						</p:inputText>
+						<p:outputLabel value="Parentesco" for="parentesco" />
+						<p:inputText id="parentesco"
+							value="#{estudanteContatoFreeBean.estudanteContato.parentensco}"
+							maxlength="200" required="true" />
+						<p:outputLabel value="Celular" for="celular" />
+						<p:inputMask id="celular"
+							value="#{estudanteContatoFreeBean.estudanteContato.celular}"
+							mask="(99)99999-9999" required="true" />
+						<p:outputLabel value="Telefone" for="telefone" />
+						<p:inputMask id="telefone"
+							value="#{estudanteContatoFreeBean.estudanteContato.telefone}"
+							mask="(99)9999-9999" />
+						<p:spacer />
+						<p:commandButton value="Adicionar" id="botaoSalvar"
+							styleClass="botao-medio"
+							action="#{estudanteContatoFreeBean.salvar()}" update="@form" />
+					</p:panelGrid>
+				</p:panel>
+				<p:dataTable
+					value="#{estudanteContatoFreeBean.estudante.estudanteContatos}"
+					var="contato" style="margin-top:10px;margin-bottom:30px"
+					emptyMessage="Nenhum contato encontrado!" rows="10"
+					paginator="true" paginatorAlwaysVisible="false"
+					paginatorPosition="bottom" id="table" reflow="true"
+					rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
+					<p:column headerText="Nome" style="text-align: left;">
+						<h:outputText value="#{contato.nome}" />
+					</p:column>
+					<p:column headerText="Parentesco" style="text-align: left;">
+						<h:outputText value="#{contato.parentensco}" />
+					</p:column>
+					<p:column headerText="Celular" style="text-align: left;">
+						<h:outputText value="#{contato.celular}" />
+					</p:column>
+					<p:column headerText="Telefone" style="text-align: left;">
+						<h:outputText value="#{contato.telefone}" />
+					</p:column>
+					<p:column headerText="Excluir" styleClass="column-pequeno">
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							process="@this" update="table"
+							action="#{estudanteContatoFreeBean.excluir(contato)}">
+							<p:confirm icon="ui-icon-alert" header="Confirmação de exclusão"
+								message="Tem certeza que deseja excluir o registro?" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

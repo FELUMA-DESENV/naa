@@ -1,0 +1,102 @@
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+	color: #555;
+}
+
+@media (max-width: 640px) {
+	.ui-tabs.ui-tabs-top > .ui-tabs-nav li {
+		width: 100%;
+	}
+}
+
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive {
+	border: none;
+}
+
+@media (max-width: 640px) {
+	.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
+		border: none;
+	}
+}
+
+.ui-radiobutton {
+	margin: 3px 3px 0px 20px !important;
+}
+
+.ui-widget {
+	font-size: 1.0em
+}
+
+.ui-datalist-item .ui-grid .ui-grid-row {
+	background-color: #f2f7f3;
+}
+
+.ui-widget-header {
+	color:#999999;
+}
+
+.ui-datalist-content{
+	border: 0px; 
+}
+
+.hide-column-names table thead tr {
+    display: none;
+}
+
+.ui-wizard-step-title {
+    font-size: 14px !important;
+}
+
+.ui-fluid .ui-inputtext {
+    width: 100%;
+    height: 35px;
+}
+
+.ui-fluid .ui-inputmask {
+    width: 100%;
+    height: 35px;
+}
+
+.ui-fluid .ui-password {
+    width: 100%;
+    height: 35px;
+}
+.ui-fluid .ui-calendar, .ui-fluid .ui-calendar input{
+	    width: 100%;
+    height: 35px;
+}
+
+.ui-selectonemenu label.ui-selectonemenu-label {
+    cursor: pointer;
+    height: 33px;
+    line-height: 25px;
+}
+
+.ui-button-text-icon-left .ui-button-text {
+    padding: .3em 1em .3em 2.1em;
+    height: 25px !important;
+    line-height: 30px !important;
+}
+
+.ui-wizard-step-title {
+    font-size: 18px;
+    margin: 0 3px 0 0;
+    padding: .4em;
+    float: left;
+    cursor: default;
+}
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #57bdb9;
+    background-color: #57bdb9;
+    background-position: 0px;
+    background-image: -moz-linear-gradient(top, #57bdb9, #57bdb9);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#57bdb9), to(#57bdb9));
+    background-image: -webkit-linear-gradient(top, #57bdb9, #57bdb9);
+    background-image: -o-linear-gradient(top, #57bdb9, #57bdb9);
+    background-image: linear-gradient(to bottom, #57bdb9, #57bdb9);
+    background-repeat: repeat-x;
+    filter: progid:dximagetransform.microsoft.gradient(startColorstr='#57bdb9', endColorstr='#57bdb9', GradientType=0);
+    cursor: default;
+}

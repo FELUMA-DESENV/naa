@@ -1,0 +1,132 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/layoutInterno.xhtml">
+
+	<ui:define name="content">
+		<h:form id="frm">
+			<p:toolbar style="margin-top:15px">
+				<p:toolbarGroup align="right">
+					<p:commandButton value="Próximo" id="botaoSalvar"
+						action="#{cadastroEstudanteFreeBean.salvar()}" update="@form" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="left">
+					<p:button value="Limpar"
+						outcome="/estudanteFree/cadastroEstudanteFree" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:messages autoUpdate="false" closable="true" />
+			<div class="ui-fluid">
+				<p:panel
+					header="Dados do estudante #{estudanteContatoFreeBean.estudante.nome}"
+					id="panelEstudante" style="margin-top:10px;">
+					<p:panelGrid columns="4" layout="grid" style="margin-top: 2px;"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-2, ui-grid-col-4,ui-grid-col-2, ui-grid-col-4">
+						<p:outputLabel value="Nome" for="idNome" />
+						<p:inputText id="idNome"
+							value="#{cadastroEstudanteFreeBean.estudante.nome}"
+							disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Data cadastro" for="idDataCadastro" />
+						<p:inputText id="idDataCadastro"
+							value="#{cadastroEstudanteFreeBean.estudante.dataCadastro}"
+							disabled="true">
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:inputText>
+						<p:outputLabel value="CPF" for="idCpf" />
+						<p:inputText id="idCpf"
+							value="#{cadastroEstudanteFreeBean.estudante.cpf}"
+							disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Matrícula" for="idMatricula" />
+						<p:inputText id="idMatricula"
+							value="#{cadastroEstudanteFreeBean.estudante.matricula}"
+							disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Curso" for="idCurso" />
+						<p:inputText id="idCurso"
+							value="#{cadastroEstudanteFreeBean.estudante.curso.nome}"
+							disabled="true">
+						</p:inputText>
+						<p:outputLabel value="Hospital para encaminhamento"
+							for="idHospitalEncaminhamento" />
+						<p:inputMask id="idHospitalEncaminhamento"
+							value="#{cadastroEstudanteFreeBean.estudante.hospitalEncaminhamento}"
+							maxlength="200">
+						</p:inputMask>
+						<p:outputLabel value="Tipo sanguíneo" for="idTipoSanguineo" />
+						<p:selectOneMenu id="idTipoSanguineo"
+							value="#{cadastroEstudanteFreeBean.estudante.tipoSanguineo}">
+							<f:selectItem itemLabel="Selecione o tipo sanguineo" />
+							<f:selectItems
+								value="#{cadastroEstudanteFreeBean.listaTiposSanguineos}"
+								var="tipo" itemValue="#{tipo}" itemLabel="#{tipo.descricao}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Plano de saúde" for="idPlaSaude" />
+						<p:inputText id="idPlaSaude"
+							value="#{cadastroEstudanteFreeBean.estudante.planoSaude}"
+							maxlength="200">
+						</p:inputText>
+						<p:outputLabel value="Matrícula plano de saúde"
+							for="idMatrPlaSaude" />
+						<p:inputText id="idMatrPlaSaude"
+							value="#{cadastroEstudanteFreeBean.estudante.numeroPlanoSaude}"
+							maxlength="50">
+						</p:inputText>
+						<p:outputLabel value="Telefone plano de saúde" for="idTelPlaSaude" />
+						<p:inputMask id="idTelPlaSaude"
+							value="#{cadastroEstudanteFreeBean.estudante.telefonePlanoSaude}"
+							maxlength="14" mask="(99)?99999-9999" slotChar=" ">
+						</p:inputMask>
+						<p:outputLabel value="Mãe" for="idMae" />
+						<p:inputText id="idMae"
+							value="#{cadastroEstudanteFreeBean.estudante.mae}"
+							maxlength="200">
+						</p:inputText>
+						<p:outputLabel value="Telefone mãe" for="idTelMae" />
+						<p:inputMask id="idTelMae"
+							value="#{cadastroEstudanteFreeBean.estudante.telefoneMae}"
+							maxlength="14" mask="(99)?99999-9999" slotChar=" ">
+						</p:inputMask>
+						<p:outputLabel value="Pai" for="idPai" />
+						<p:inputText id="idPai"
+							value="#{cadastroEstudanteFreeBean.estudante.pai}"
+							maxlength="200">
+						</p:inputText>
+						<p:outputLabel value="Telefone pai" for="idTelPai" />
+						<p:inputMask id="idTelPai"
+							value="#{cadastroEstudanteFreeBean.estudante.telefonePai}"
+							maxlength="14" mask="(99)?99999-9999" slotChar=" ">
+						</p:inputMask>					
+					</p:panelGrid>
+				</p:panel>
+			</div>
+			<p:dialog widgetVar="dlg" modal="true" width="400" resizable="true"
+				closable="false" header="Encontre seu usuário">
+				<h:form id="frmPesquisa">
+					<p:messages id="idMsgDlg" autoUpdate="true" closable="true" />
+					<div class="ui-fluid">
+						<p:outputLabel value="Digite seu CPF" for="idCpfPesquisa" />
+						<p:inputMask style="margin-top:15px" id="idCpfPesquisa"
+							maxlength="11" mask="99999999999"
+							value="#{cadastroEstudanteFreeBean.estudante.cpf}"
+							placeholder="Digite seu CPF ...">
+						</p:inputMask>
+						<p:commandButton process="@this idCpfPesquisa"
+							style="margin-top:15px"
+							action="#{cadastroEstudanteFreeBean.pesquisaEstudantePorCPF()}"
+							title="Pesquisar" value="Pesquisar" styleClass="botao-medio"
+							update=":frm:panelEstudante">
+							<p:focus />
+						</p:commandButton>
+					</div>
+				</h:form>
+			</p:dialog>
+			<p:remoteCommand autoRun="true" oncomplete="PF('dlg').show();"
+				rendered="#{cadastroEstudanteFreeBean.estudante != null}" />
+		</h:form>
+	</ui:define>
+</ui:composition>

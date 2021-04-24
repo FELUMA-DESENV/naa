@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	template="/WEB-INF/template/layoutInterno.xhtml">
+
+	<ui:define name="content">
+		<f:metadata>
+			<o:viewParam name="vacina" value="#{cadastroVacinaBean.vacina}" />
+		</f:metadata>
+		<h:form id="frm">
+			<p:outputLabel
+				value="#{cadastroVacinaBean.editando ? 'Editar vacina' : 'Nova vacina '}"
+				styleClass="titulo-pagina" />
+			<p:toolbar style="margin-top:15px">
+				<p:toolbarGroup>
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroVacinaBean.salvar()}" update="@form" />
+					<p:separator />
+					<p:button value="Limpar" outcome="/vacina/cadastroVacina" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Voltar" outcome="/vacina/pesquisaVacina" />
+				</p:toolbarGroup>
+			</p:toolbar>
+			<p:messages autoUpdate="true" closable="true" />
+			<div class="ui-fluid">
+				<p:panel header="Dados da vacina" style="margin-top:10px;">
+					<p:panelGrid columns="4" layout="grid" style="margin-top: 2px;"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-2, ui-grid-col-4,ui-grid-col-2, ui-grid-col-4">
+						<p:outputLabel value="Nome" for="idNome" />
+						<p:inputText id="idNome" value="#{cadastroVacinaBean.vacina.nome}" />
+
+						<p:outputLabel value="Descrição" for="idDescricao" />
+						<p:inputText id="idDescricao"
+							value="#{cadastroVacinaBean.vacina.descricao}">
+						</p:inputText>
+
+						<p:outputLabel value="Vacina obrigatória" for="idObrigatorio" />
+
+							<p:selectOneButton value="#{cadastroVacinaBean.vacina.obrigatoria}" id="idObrigatorio">
+								<f:selectItem itemLabel="Não" itemValue="false" />
+								<f:selectItem itemLabel="Sim" itemValue="true" />
+						</p:selectOneButton>
+					</p:panelGrid>
+				</p:panel>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
