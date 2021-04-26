@@ -25,3 +25,6 @@ hs_err_pid*
 ### Java-Web ###
 ## ignoring target file
 target/
+
+#remover preference 
+ .settings/org.eclipse.m2e.wtp.prefs
