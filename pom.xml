@@ -46,7 +46,7 @@
 	<dependency>
 	    <groupId>net.sf.jasperreports</groupId>
 	    <artifactId>jasperreports-fonts</artifactId>
-	    <version>6.16.0</version>     
+	    <version>6.1.1</version>     
 	</dependency> 
   	
   	<!-- Spring Security (autenticaÃ§Ã£o e autorizaÃ§Ã£o) -->
@@ -166,13 +166,13 @@
 		<scope>compile</scope>
 	</dependency>
 	
-	<!-- Font Arial  
+	<!-- Font Arial -->
 	<dependency>
 		<groupId>font.arial</groupId>
 		<artifactId>CustomArial</artifactId>
 		<version>1.0</version>
 		<scope>compile</scope>
-	</dependency> -->
+	</dependency>
 	
 	<!-- API Json -->
 	<dependency>
