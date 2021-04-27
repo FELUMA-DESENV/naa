@@ -79,7 +79,7 @@ public class Estudante implements Serializable {
 
 	//bi-directional many-to-one association to Atendimento
 	@OneToMany(mappedBy="estudante")
-	private List<Atendimento> atendimentos;
+	private Set<Atendimento> atendimentos = new HashSet<Atendimento>();
 
 	//bi-directional many-to-one association to Curso
 	@ManyToOne
@@ -197,11 +197,13 @@ public class Estudante implements Serializable {
 		this.tipoSanguineo = tipoSanguineo;
 	}
 
-	public List<Atendimento> getAtendimentos() {
-		return this.atendimentos;
+	
+
+	public Set<Atendimento> getAtendimentos() {
+		return atendimentos;
 	}
 
-	public void setAtendimentos(List<Atendimento> atendimentos) {
+	public void setAtendimentos(Set<Atendimento> atendimentos) {
 		this.atendimentos = atendimentos;
 	}
 
@@ -295,6 +297,12 @@ public class Estudante implements Serializable {
 		this.dataCadastro = dataCadastro;
 	}
 
+	public boolean ispossui_atendimento() {
+	
+		boolean retorno = 	(this.atendimentos.size() > 0);
+		return retorno;
+	}
+	
 	@Override
 	public String toString() {
 		

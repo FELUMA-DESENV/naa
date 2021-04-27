@@ -51,8 +51,8 @@ public class AtendimentoDAO extends GenericoDAO<Atendimento, Long> implements Se
 	
 	public List<Atendimento> listarAtendimentosEstudante(Long codigoEstudante) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select distinct ate from Atendimento ate ");
-		sb.append("join fetch ate.estudante est   			");
+		sb.append("select ate from Atendimento ate ");
+		sb.append("left join fetch ate.estudante est        ");
 		sb.append("where est.codigo = :codigoEstudante		");
 		sb.append("order by ate.codigo desc            		");
 

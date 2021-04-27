@@ -130,8 +130,8 @@
 							<f:param name="estudante"
 								value="#{cadastroEstudanteBean.estudante.codigo}" />
 						</p:button>
-						<p:button outcome="estudanteProntuario" title="Prontuários"
-							value="Prontuários" styleClass="botao-grande">
+						<p:button outcome="estudanteProntuario" title="Prontuários" 
+							value="Prontuários" styleClass="botao-grande" disabled="#{not cadastroEstudanteBean.estudante.possui_atendimento}" >
 							<f:param name="estudante"
 								value="#{cadastroEstudanteBean.estudante.codigo}" />
 						</p:button>

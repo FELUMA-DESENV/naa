@@ -35,9 +35,10 @@ public class EstudanteDAO extends GenericoDAO<Estudante, Long> implements Serial
 
 	public Estudante recuperarEstudante(Long codigo) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select distinct est from Estudante est                        ");
-		sb.append("              left join fetch est.estudanteContatos estCon    ");
-		sb.append("where est.codigo = :codigo                                    ");
+		sb.append("select est from Estudante est                     ");
+		sb.append("              left join fetch est.estudanteContatos estCon ");
+		sb.append("              left join fetch est.atendimentos         ate ");
+		sb.append("where est.codigo = :codigo                                 ");
 		
 		return getEntityManager().createQuery(sb.toString(), Estudante.class)
 				.setParameter("codigo", codigo).getSingleResult();

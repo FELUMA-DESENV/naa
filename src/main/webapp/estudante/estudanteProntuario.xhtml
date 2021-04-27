@@ -14,26 +14,26 @@
 		</f:metadata>
 		
 		<h:form id="frmPesquisa">
-			<p:outputLabel value="Prontuários estudantes"
-				styleClass="titulo-pagina" />
-			<p:messages autoUpdate="true" closable="true" />
+			<p:outputLabel value="Prontuários do estudante: #{estudanteProntuarioBean.estudante.nome}" 
+				styleClass="titulo-pagina" style="margin-bottom:20px"/>
+			<p:spacer/>
 			<div class="ui-fluid">
 				<p:repeat value="#{estudanteProntuarioBean.atendimentos}"
 					var="atendimento">
 					<p:fieldset legend="#{atendimento.dataAtendimento}"
-						toggleable="true" toggleSpeed="500" collapsed="true"
+						toggleable="true" toggleSpeed="200" collapsed="true"
 						style="margin-bottom:20px">
-						<h:panelGrid columns="2" cellpadding="5">
-							<h:outputText value="Conduta" />
-							<h:outputText value="#{atendimento.conduta}"
-								style="font-weight: bold;" />
+						<h:panelGrid columns="2" cellpadding="5">						
 							<h:outputText value="Queixa Principal:" />
-							<h:outputText value="#{avaliacao.queixaPrincipal}">
-							</h:outputText>
+							<h:outputText value="#{atendimento.queixaPrincipal}" style="font-weight: bold;" />
+							
+							<h:outputText value="Conduta" />
+							<h:outputText value="#{atendimento.conduta}"/>
 						</h:panelGrid>
 					</p:fieldset>
 				</p:repeat>
 			</div>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
