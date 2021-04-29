@@ -22,7 +22,7 @@
 			</p:toolbar>
 			
 			<p:messages autoUpdate="true" closable="true"/>
-			<div class="ui-fluid">
+			
 			<p:dataTable value="#{pesquisaUsuarioBean.usuarios}" var="usuario" style="margin-top:10px;margin-bottom:30px" 
 				emptyMessage="Nenhum usuário encontrado!" rows="10" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom" id="table" reflow="true" rowsPerPageTemplate="5,10,15,20,25,30,35,40,45,50">
@@ -58,7 +58,7 @@
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
-			</div>
+			
 		</h:form>
 	</ui:define>
 	

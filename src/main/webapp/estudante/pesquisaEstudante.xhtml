@@ -7,10 +7,10 @@
 
 	<ui:define name="content">
 		<h:form id="frmPesquisa">
-			<p:outputLabel value="Pesquisa de estudantes"
+			<p:outputLabel value="Pesquisa de Estudante"
 				styleClass="titulo-pagina" />
 			<p:messages autoUpdate="true" closable="true" />
-			<div class="ui-fluid">
+			
 				<p:dataTable value="#{pesquisaEstudanteBean.estudantes}"
 					var="estudante" style="margin-top:10px;margin-bottom:30px"
 					emptyMessage="Nenhum estudante encontrado!" rows="10"
@@ -53,7 +53,7 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-			</div>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

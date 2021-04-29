@@ -7,7 +7,7 @@
 
 	<ui:define name="content">
 		<h:form id="frmPesquisa">
-			<p:outputLabel value="Pesquisa de vacina"
+			<p:outputLabel value="Pesquisa de Vacina"
 				styleClass="titulo-pagina" />
 				
 				
@@ -22,10 +22,8 @@
 					<p:button value="Novo" outcome="/vacina/cadastroVacina"/>
 				</p:toolbarGroup>
 			</p:toolbar>
-			
-				
+					
 			<p:messages autoUpdate="true" closable="true" />
-			<div class="ui-fluid">
 				<p:dataTable value="#{pesquisaVacinaBean.vacinas}"
 					var="vacina" style="margin-top:10px;margin-bottom:30px"
 					emptyMessage="Nenhum vacina encontrado!" rows="10"
@@ -53,7 +51,7 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-			</div>
+
 		</h:form>
 	</ui:define>
 </ui:composition>

@@ -7,7 +7,7 @@
 
 	<ui:define name="content">
 		<h:form id="frmPesquisa">
-			<p:outputLabel value="Pesquisa de vacina" styleClass="titulo-pagina" />
+			<p:outputLabel value="Pesquisa de Vacina" styleClass="titulo-pagina" />
 
 
 			<p:toolbar style="margin-top:15px">
@@ -24,7 +24,7 @@
 
 
 			<p:messages autoUpdate="true" closable="true" />
-			<div class="ui-fluid">
+
 				<p:dataTable value="#{pesquisaAtendimentoBean.atendimentos}"
 					var="atendimento" style="margin-top:10px;margin-bottom:30px"
 					emptyMessage="Nenhum atendimento encontrado!" rows="10"
@@ -64,7 +64,7 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-			</div>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>

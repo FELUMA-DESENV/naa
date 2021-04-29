@@ -75,6 +75,7 @@
 						</p:inputText>
 					</p:panelGrid>
 				</p:panel>
+		</div>
 				<p:dataTable
 					value="#{estudanteVacinaBean.estudante.vacinaEstudantes}"
 					var="vacinaEstudante" style="margin-top:10px;margin-bottom:30px"
@@ -90,7 +91,7 @@
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="Data Validate" style="text-align: left;">
+					<p:column headerText="Data Validade" style="text-align: left;">
 						<h:outputText value="#{vacinaEstudante.dataValidade}">
 							<f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
@@ -107,7 +108,7 @@
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>
-			</div>
+			
 		</h:form>
 	</ui:define>
 </ui:composition>
